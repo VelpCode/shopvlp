@@ -3,8 +3,14 @@ import { NavbarLinks } from "./NavbarLinks";
 import { Button } from "@/components/ui/button";
 import { Mobilemenu } from "./Mobilemenu";
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { UserNav } from "./UserNav";
 
-export function Navbar() {
+export async function Navbar() {
+
+
+    const { getUser } = getKindeServerSession()
+    const user = await getUser();
 
     return (
 
@@ -18,9 +24,16 @@ export function Navbar() {
             <NavbarLinks />
 
             <div className="flex items-center gap-x-2 ms-auto md:col-span-3">
-                
-                <Button asChild><LoginLink>Log In</LoginLink></Button>
-                <Button variant={"secondary"} asChild><RegisterLink>Sign Up</RegisterLink></Button>
+            {user ? (
+                <UserNav/>
+            ): (
+
+                <div className="flex items-center gap-x-2">
+                    <Button asChild><LoginLink>Log In</LoginLink></Button>
+                    <Button variant={"secondary"} asChild><RegisterLink>Sign Up</RegisterLink></Button>
+                </div>
+
+            )}
 
                 <div className="md:hidden">
                     <Mobilemenu />
