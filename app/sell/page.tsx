@@ -5,7 +5,9 @@ export default function SellRoute() {
 
     return (
 
-        <h1> Hello from the sell route </h1>
+        <section className="max-w-7xl mx-auto px-4 md:px-8">
+            
+        </section>
         
     )
 

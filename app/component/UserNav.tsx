@@ -7,6 +7,7 @@ import { DropdownMenuGroup } from "@/components/ui/dropdown-menu";
 
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 interface iAppProps {
     email: string;
@@ -37,8 +38,10 @@ export function UserNav({email, name, userImage}: iAppProps) {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator/>
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        Settings
+                    <DropdownMenuItem asChild>
+                        <Link href = "/sell">
+                            Sell your Product
+                        </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                         Profile
